@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>fpdqwq</title>
+
+    <link rel="canonical" href="http://localhost:4000/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.min.css">
+
+    <!-- LightBox -->
+    <link rel="stylesheet" href="/css/lightbox.min.css">
+
+    <!-- hreflang -->
+    <link rel="alternate" href="/" hreflang="zh-Hans"/>
+
+    
+    
+    
+
+    <!-- Custom Fonts font-awesome -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link type="text/css" href="/css/font-awesome.min.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="/css/font-awesome.min.css">-->
+
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    
+
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">fpdqwq</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+<!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/home.png')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>fpdqwq</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">fpd is kawaii</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+    		<div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+    			
+<div class="post-preview">
+    <a href="/2020/03/16/%E7%AE%97%E6%B3%95-%E6%9C%80%E5%B0%8F%E7%8E%AF/">
+        <h2 class="post-title">
+            【算法】最小环
+        </h2>
+        
+        <div class="post-content-preview">
+            前言
+
+
+  本文将介绍有关有向图/无向图求解最小环长的算法。
+
+
+前置知识
+
+
+  图论基础（概念）
+  广度优先搜索/BFS
+  最短路算法（dijkstra, floyd）
+
+
+最小环
+
+
+  问题描述：在一个图 $G = (E, V)$ 中求最小环长。边权非负。
+  
+    
+      
+        
+          在本文中，记 $N =
+          V
+   ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by fpdqwq on March 16, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2020/03/14/AGC034F-RNG-and-XOR/">
+        <h2 class="post-title">
+            AGC034F RNG and XOR
+        </h2>
+        
+        <div class="post-content-preview">
+            前言
+
+前置知识
+
+
+  期望方程的设立
+  线性代数（矩阵乘法、矩阵的逆）
+  快速沃尔什变换（FWT）
+  一些其它反演
+
+
+以上为阅读本文章的前置知识，而并非解决本题必备知识。
+
+相关阅读
+
+
+  yyb前辈的FWT学习笔记
+  VFK的《炫酷反演魔术》
+
+
+本文取材自上述两篇博客/讲义/文章。
+
+题解
+
+记号与概念
+
+
+  反演：已知 $f(n)=\sum_{k}{a_{n,k}g(...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by fpdqwq on March 14, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2020/03/11/%E7%AE%97%E6%B3%95-%E6%94%AF%E9%85%8D%E6%A0%91/">
+        <h2 class="post-title">
+            【算法】支配树
+        </h2>
+        
+        <div class="post-content-preview">
+            前言
+
+
+  本文章取材自此篇博客，以及李煜东的《图连通性若干问题探讨》。
+  由于支配树的 $Lengauer-Tarjan$ 算法涉及到较多性质和引理的证明，容易遗忘，所以作者在这里把证明的大致框架整理出来。
+  在下文中，不妨对图重标号，使得 $u=dfn_u$ —— 即下文中，对两个点进行比较实质上是对其 dfs序 进行比较。
+
+
+支配树
+
+
+  流图 (Flow Graph)：若有...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by fpdqwq on March 11, 2020
+    </p>
+</div>
+<hr>
+
+
+<!-- Pager -->
+
+
+			
+			
+    		</div>
+		
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+                        
+                            <img src="/img/avatar.png" />
+                        
+                        
+                            <p>fpd is kawaii !!!</p>
+                        
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            
+                            
+                            
+                            
+                            
+                        </ul>
+                    </div>
+                </section>
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="https://ghastlcon.cf">这个是谁呢</a></li>
+                    
+                </ul>
+                
+    		</div>
+        
+	</div>
+</div>
+
+
+<!-- Gitalk -->
+<script type="text/javascript">
+function LoadGitalk() {
+    if (typeof Gitalk === 'undefined') {
+        setTimeout(LoadGitalk, 100);
+    }
+    else {
+        var gitalk = new Gitalk({
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: [''],
+            id: location.pathname,      // Ensure uniqueness and length less than 50
+            distractionFreeMode: false  // Facebook-like distraction free mode
+        });
+
+        gitalk.render('gitalk-container');
+    }
+}
+LoadGitalk();
+</script>
+
+
+
+<!-- Footer -->
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.min.js"></script>
+
+
+
+
+
+<!-- LightBox -->
+<script src="/js/lightbox.min.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c, a) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (a) {
+        for (var i=0; i<a.length; i++) { o.setAttribute(a[i][0], a[i][1]); }
+      }
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.min.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("/js/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Picture figure -->
+<script type="text/javascript">
+$('img').closest('a').wrap('<figure></figure>');
+document.addEventListener("DOMContentLoaded", function() {
+    $('figure').each(function() {
+        var that = $(this)[0];
+        var img        = that.getElementsByTagName('a')[0].getElementsByTagName('img')[0];
+        var figcaption = document.createElement('figcaption');
+        var title      = document.createTextNode($(img).attr('alt'));
+        $(figcaption).attr('align', 'center');
+        figcaption.appendChild(title     );
+        that      .appendChild(figcaption);
+    });
+
+    renderKaTeX();
+});
+</script>
+
+<!--  MathJax -->
+
+
+
+<script type="text/javascript">function renderKaTeX(){}</script>
+
+
+
+<!-- LightBox for Markdown -->
+<script type="text/javascript">
+$(function() {
+    $('img').each(function() {
+        var that = $(this);
+        that.closest('a').attr('data-toggle', 'lightbox').attr('rel', 'lightbox').attr('data-title', that.attr('alt'));
+    });
+    $(document).delegate('*[data-toggle="lightbox"]', 'click', function(e) {
+        e.preventDefault();
+        $(this).ekkoLightbox();
+    });
+})
+</script>
+
+<!-- Code folding -->
+<script type="text/javascript">
+$(function() {
+    $('div.highlighter-rouge').each(function(index, value) {
+        var lgj = value.getElementsByTagName('div')[0].getElementsByTagName('pre')[0].getElementsByTagName('code')[0].getElementsByTagName('span')[0];
+        if (typeof(lgj) === "undefined") {
+            return true;
+        }
+        var code = value.getElementsByTagName('div')[0].getElementsByTagName('pre')[0].getElementsByTagName('code')[0].getElementsByTagName('span')[0].innerHTML;
+        if (code.indexOf('#include') === -1) {
+            return true;
+        }
+        $(value).wrap('<details></details>');
+        var details = value.parentNode;
+        var summary = document.createElement('summary');
+        var title   = document.createTextNode('Expand code');
+        $(summary).css('display', 'list-item');
+        $(summary).css('font-weight', '900');
+        summary.appendChild(title);
+        details.appendChild(summary);
+    });
+})
+</script>
+
+<!-- Baidu Analytics -->
+
+
+<!-- Google Analytics is in Head -->
+
+<!-- Side Catalog -->
+
+
+
+
+</body>
+
+</html>

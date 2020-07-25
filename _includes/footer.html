@@ -1,0 +1,367 @@
+<!-- Footer -->
+{% if site.SNS %}
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    {% if site.RSS %}
+                    <li>
+                        <a href="{{ "/feed.xml" | prepend: site.baseurl }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if site.twitter_username %}
+                    <li>
+                        <a href="https://twitter.com/{{ site.twitter_username }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if site.zhihu_username %}
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/{{ site.zhihu_username }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse fontawesome-text">知</i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if site.weibo_username %}
+                    <li>
+                        <a target="_blank" href="https://weibo.com/u/{{ site.weibo_username }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if site.facebook_username %}
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/{{ site.facebook_username }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if site.google_plus_id %}
+                    <li>
+                        <a target="_blank" href="https://plus.google.com/u/0/{{ site.google_plus_id }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-google-plus fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if site.github_username %}
+                    <li>
+                        <a target="_blank" href="https://github.com/{{ site.github_username }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if site.email %}
+                    <li>
+                        <a target="_blank" href="mailto:{{ site.email }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if site.qq_id %}
+                    <li>
+                        <a target="_blank" href="tencent://message/?uin={{ site.qq_id }}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-qq fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endif %}
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="{{ "/js/blog.min.js" | prepend: site.baseurl }}"></script>
+
+{% if page.catalog %}
+<script src="{{ "/js/jquery.nav.min.js" | prepend: site.baseurl }}"></script>
+{% endif %}
+
+{% if site.inserver and page.public %} 
+<script src="/js/gitalk.min.js"></script> 
+{% endif %}
+
+<!-- LightBox -->
+<script src="/js/lightbox.min.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c, a) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (a) {
+        for (var i=0; i<a.length; i++) { o.setAttribute(a[i][0], a[i][1]); }
+      }
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.min.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("/js/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Picture figure -->
+<script type="text/javascript">
+$('img').closest('a').wrap('<figure></figure>');
+document.addEventListener("DOMContentLoaded", function() {
+    $('figure').each(function() {
+        var that = $(this)[0];
+        var img        = that.getElementsByTagName('a')[0].getElementsByTagName('img')[0];
+        var figcaption = document.createElement('figcaption');
+        var title      = document.createTextNode($(img).attr('alt'));
+        $(figcaption).attr('align', 'center');
+        figcaption.appendChild(title     );
+        that      .appendChild(figcaption);
+    });
+
+    renderKaTeX();
+});
+</script>
+
+<!--  MathJax -->
+
+{% if page.mathjax %}
+
+<script src="https://cdn.staticfile.org/KaTeX/0.10.0-beta/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.10.0-beta/contrib/auto-render.min.js"></script>
+<script type="text/javascript">
+  function renderKaTeX() {
+    function stripcdata(x) {
+      if (x.startsWith('% <![CDATA[') && x.endsWith('%]]>'))
+        return x.substring(11, x.length - 4);
+      return x;
+    }
+    // document.querySelectorAll("script[type='math/tex']").forEach(function(el){
+    //   el.outerHTML = "$" + stripcdata(el.textContent) + "$";
+    // });
+    document.querySelectorAll("script[type='math/tex; mode=display']").forEach(function(el){
+      el.outerHTML = "$$" + stripcdata(el.textContent) + "$$";
+    });
+
+    renderMathInElement(
+      document.body,
+      {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+        ],
+      }
+    );
+    enlarge_katex_loaded();
+  }
+</script>
+
+<!-- KaTeX zoom -->
+<script src="{{ "/js/katex-zoom.min.js" | prepend: site.baseurl }}"></script>
+
+<!-- <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        menuSettings: {
+            zoom: "Double Click"
+        },
+        "HTML-CSS": {
+            preferredFont: "TeX",
+            availableFonts: ["STIX","TeX"],
+            linebreaks: { automatic:true },
+            EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+        },
+        tex2jax: {
+            inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+            displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
+            processEscapes: true,
+            ignoreClass: "tex2jax_ignore|dno",
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        },
+        TeX: {
+            noUndefined: {
+                attributes: {
+                    mathcolor: "red",
+                    mathbackground: "#FFEEEE",
+                    mathsize: "90%"
+                }
+            },
+            Macros: {
+                href: "{}"
+            }
+        },
+        messageStyle: "none"
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" async src="https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> -->
+
+{% else %}
+
+<script type="text/javascript">function renderKaTeX(){}</script>
+
+{% endif %}
+
+<!-- LightBox for Markdown -->
+<script type="text/javascript">
+$(function() {
+    $('img').each(function() {
+        var that = $(this);
+        that.closest('a').attr('data-toggle', 'lightbox').attr('rel', 'lightbox').attr('data-title', that.attr('alt'));
+    });
+    $(document).delegate('*[data-toggle="lightbox"]', 'click', function(e) {
+        e.preventDefault();
+        $(this).ekkoLightbox();
+    });
+})
+</script>
+
+<!-- Code folding -->
+<script type="text/javascript">
+$(function() {
+    $('div.highlighter-rouge').each(function(index, value) {
+        var lgj = value.getElementsByTagName('div')[0].getElementsByTagName('pre')[0].getElementsByTagName('code')[0].getElementsByTagName('span')[0];
+        if (typeof(lgj) === "undefined") {
+            return true;
+        }
+        var code = value.getElementsByTagName('div')[0].getElementsByTagName('pre')[0].getElementsByTagName('code')[0].getElementsByTagName('span')[0].innerHTML;
+        if (code.indexOf('#include') === -1) {
+            return true;
+        }
+        $(value).wrap('<details></details>');
+        var details = value.parentNode;
+        var summary = document.createElement('summary');
+        var title   = document.createTextNode('Expand code');
+        $(summary).css('display', 'list-item');
+        $(summary).css('font-weight', '900');
+        summary.appendChild(title);
+        details.appendChild(summary);
+    });
+})
+</script>
+
+<!-- Baidu Analytics -->
+{% if site.ba_track_id %}
+{% if site.inserver %}
+<script>
+    var _baId = '{{ site.ba_track_id }}';
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+{% endif %}
+{% endif %}
+
+<!-- Google Analytics is in Head -->
+
+<!-- Side Catalog -->
+{% if page.catalog %}
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+    generateCatalog(".catalog-body");
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("{{ '/js/jquery.nav.js' | prepend: site.baseurl }}", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+{% endif %}
