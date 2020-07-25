@@ -1,6 +1,6 @@
 # Site settings
-title: fpdqwq
-SEOTitle: fpdqwq
+title: Fanfaredash
+SEOTitle: Fanfaredash
 header-img: /img/home.png
 description: ""
 keyword: ""
@@ -71,7 +71,7 @@ kramdown:
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "fpd is kawaii !!!"
+sidebar-about-description: "Fanfare's blog"
 sidebar-avatar: /img/avatar.png      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
@@ -85,7 +85,7 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 # Friends
 friends: [
   {
-    title: "这个是谁呢",
+    title: "Ghastlolicon",
     href : "https://ghastlcon.cf"
   }
 ]
